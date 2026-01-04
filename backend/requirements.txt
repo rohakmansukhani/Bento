@@ -35,3 +35,6 @@ python-jose[cryptography]==3.3.0
 
 # HTTP Client
 httpx==0.27.2
+
+# AI SDKs
+google-genai==0.3.0
