@@ -31,7 +31,11 @@ class Settings(BaseSettings):
     
     # CORS
     FRONTEND_URL: str = "http://localhost:3000"
-    ALLOWED_ORIGINS: list[str] = ["http://localhost:3000"]
+    ALLOWED_ORIGINS: list[str] = [
+        "http://localhost:3000",
+        "https://bento-privacy.vercel.app",
+        "https://bento-privacy.vercel.app/"
+    ]
     
     # Database (Supabase)
     SUPABASE_URL: str = ""
