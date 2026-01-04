@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+/* THEME CONFIGURATION (Tailwind v4) */
+@theme {
+  /* Colors */
+  --color-obsidian: #050505;
+  --color-zinc_dark: #121212;
+  --color-amber_neon: #FFB000;
+  --color-safety_gold: #FFC033;
+  --color-zinc_text: #E4E4E7;
+
+  /* Fonts */
+  --font-mono: var(--font-jetbrains-mono), monospace;
+  --font-sans: var(--font-inter), sans-serif;
+
+  /* Shadows */
+  --shadow-bento-glow: 0 0 15px rgba(255, 176, 0, 0.1);
+  --shadow-bento-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+  /* Border Radius */
+  --radius: 0.625rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+}
+
+/* BASE STYLES */
+:root {
+  --background: #050505;
+  --foreground: #e4e4e7;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* UTILITIES */
+@utility text-balance {
+  text-wrap: balance;
+}
+
+/* CUSTOM SCROLLBARS */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -1,0 +1,77 @@
+"use client";
+
+import { useState } from "react";
+import { createClient } from "@/lib/supabase";
+import { motion } from "framer-motion";
+import { Lock } from "lucide-react";
+
+export default function LoginPage() {
+    const [loading, setLoading] = useState(false);
+    const supabase = createClient();
+
+    const handleLogin = async () => {
+        setLoading(true);
+        const { error } = await supabase.auth.signInWithOAuth({
+            provider: "google",
+            options: {
+                redirectTo: `${location.origin}/auth/callback`,
+            },
+        });
+
+        if (error) {
+            console.error("Login failed:", error);
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="flex min-h-screen flex-col items-center justify-center bg-obsidian text-zinc_text selection:bg-safety_gold selection:text-obsidian">
+
+            {/* Container: The "Monolith" */}
+            <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="relative flex w-full max-w-[400px] flex-col items-center gap-8 rounded-2xl bg-zinc_dark p-12 shadow-2xl ring-1 ring-white/5"
+            >
+
+                {/* Header: Minimal & Industrial */}
+                <div className="flex flex-col items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-obsidian ring-1 ring-white/10">
+                        <Lock className="h-5 w-5 text-safety_gold" />
+                    </div>
+                    <div className="text-center">
+                        <h1 className="font-mono text-2xl font-bold tracking-tight text-white">
+                            BENTO
+                        </h1>
+                        <p className="mt-2 text-sm text-zinc-400 font-sans">
+                            Personal Privacy Co-Pilot
+                        </p>
+                    </div>
+                </div>
+
+                {/* Action: "Safety Gold" Buton */}
+                <button
+                    onClick={handleLogin}
+                    disabled={loading}
+                    className="group relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-safety_gold px-8 py-3 font-mono text-sm font-semibold text-obsidian transition-all hover:bg-amber_neon disabled:opacity-50"
+                >
+                    {loading ? (
+                        <span className="flex items-center gap-2">
+                            <span className="h-2 w-2 animate-pulse rounded-full bg-obsidian"></span>
+                            CONNECTING...
+                        </span>
+                    ) : (
+                        "CONNECT TERMINAL"
+                    )}
+                </button>
+
+                {/* Footer: Version */}
+                <div className="absolute bottom-4 text-[10px] text-zinc-700 font-mono">
+                    SYSTEM_READY // v1.0.0
+                </div>
+
+            </motion.div>
+        </div>
+    );
+}
