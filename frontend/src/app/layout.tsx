@@ -13,11 +13,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Bento",
   description: "Personal Privacy Co-Pilot",
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
+
   manifest: "/site.webmanifest",
 };
 

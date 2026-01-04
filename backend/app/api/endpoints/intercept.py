@@ -87,6 +87,9 @@ async def intercept_traffic(
     try:
         request_id = getattr(req.state, "request_id", "unknown")
         
+        # Extract conversation_id
+        conversation_id = request.metadata.get("conversation_id") if request.metadata else None
+        
         # Step 0: Policy Lookup
         policy_prompt = None
         
